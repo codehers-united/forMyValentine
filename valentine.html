@@ -1,0 +1,2155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For Roshogollah 💖</title>
+  <style>
+    :root{
+      --bg1:#0b0b14;
+      --bg2:#160b1a;
+      --card:rgba(255,255,255,0.08);
+      --text:#f7f4ff;
+      --muted:rgba(247,244,255,.75);
+      --accent:#ff4d7d;
+      --accent2:#ffb3c8;
+      --shadow: 0 20px 60px rgba(0,0,0,.35);
+      --radius: 22px;
+      --ok:#6ee7b7;
+      --warn:#fbbf24;
+      --glass: rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 800px at 20% 10%, rgba(255,77,125,.25), transparent 55%),
+        radial-gradient(1000px 700px at 80% 20%, rgba(255,179,200,.18), transparent 55%),
+        radial-gradient(900px 700px at 50% 90%, rgba(255,215,168,.18), transparent 55%),
+        linear-gradient(180deg, var(--bg1), var(--bg2));
+      overflow-x:hidden;
+    }
+    .glow{
+      position:fixed; inset:-200px;
+      background: radial-gradient(circle at 30% 30%, rgba(255,77,125,.15), transparent 45%),
+                  radial-gradient(circle at 70% 20%, rgba(255,179,200,.12), transparent 45%),
+                  radial-gradient(circle at 50% 80%, rgba(255,215,168,.10), transparent 45%);
+      filter: blur(40px);
+      pointer-events:none;
+      animation: drift 14s ease-in-out infinite alternate;
+      z-index:-3;
+    }
+    @keyframes drift{
+      from{transform: translate3d(-20px, -10px, 0) scale(1)}
+      to{transform: translate3d(25px, 15px, 0) scale(1.05)}
+    }
+    canvas#fx{
+      position:fixed; inset:0;
+      z-index:-1;
+      pointer-events:none;
+    }
+
+    header{
+      position:sticky; top:0;
+      z-index:50;
+      backdrop-filter: blur(12px);
+      background: linear-gradient(180deg, rgba(10,10,20,.70), rgba(10,10,20,.25));
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .nav{
+      max-width:1100px;
+      margin:0 auto;
+      padding:12px 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight:900;
+      letter-spacing:.2px;
+      white-space:nowrap;
+    }
+    .brand .dot{
+      width:12px;height:12px;border-radius:50%;
+      background: radial-gradient(circle at 30% 30%, #fff, var(--accent));
+      box-shadow: 0 0 20px rgba(255,77,125,.6);
+    }
+    .top-controls{
+      display:flex; gap:10px; align-items:center; flex-wrap:wrap;
+      margin-left:auto;
+    }
+    .pill{
+      padding:8px 10px;
+      border-radius:999px;
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.10);
+      color: var(--muted);
+      font-size:12px;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      white-space:nowrap;
+    }
+    .miniBtn{
+      cursor:pointer;
+      border:none;
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-weight:900;
+      color:#120812;
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      box-shadow: 0 10px 24px rgba(255,77,125,.22);
+      transition:.18s ease;
+      white-space:nowrap;
+    }
+    .miniBtn:hover{ transform: translateY(-1px); }
+    .miniBtn.secondary{
+      background: rgba(255,255,255,.08);
+      color: var(--text);
+      border: 1px solid rgba(255,255,255,.14);
+      box-shadow:none;
+      font-weight:900;
+    }
+    .vol{ width:140px; }
+
+    .links{
+      display:flex; gap:8px; flex-wrap:wrap;
+      align-items:center;
+    }
+    .links a{
+      color:var(--muted);
+      text-decoration:none;
+      font-size:12px;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.08);
+      transition:.2s ease;
+      white-space:nowrap;
+    }
+    .links a:hover{
+      color:var(--text);
+      background: rgba(255,255,255,.08);
+      border-color: rgba(255,255,255,.16);
+      transform: translateY(-1px);
+    }
+
+    main{
+      max-width:1100px;
+      margin:0 auto;
+      padding:18px 18px 80px;
+    }
+
+    .hero{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:18px;
+      align-items:stretch;
+    }
+    @media (max-width: 900px){ .hero{grid-template-columns:1fr} }
+
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,.04));
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .card::before{
+      content:"";
+      position:absolute; inset:-1px;
+      background: radial-gradient(800px 300px at 20% 0%, rgba(255,77,125,.18), transparent 55%),
+                  radial-gradient(700px 280px at 90% 10%, rgba(255,215,168,.14), transparent 55%);
+      pointer-events:none;
+      z-index:0;
+    }
+    .card > *{position:relative; z-index:1}
+
+    .hero-left{ padding:26px 22px; display:flex; flex-direction:column; gap:14px; }
+    .badge{
+      display:inline-flex; gap:8px; align-items:center;
+      padding:8px 12px; border-radius:999px;
+      background: rgba(255,77,125,.12);
+      border:1px solid rgba(255,77,125,.22);
+      width:max-content;
+      color:var(--accent2);
+      font-weight:800; font-size:13px;
+    }
+    .title{
+      font-size: clamp(28px, 4vw, 44px);
+      line-height:1.05; margin:0; letter-spacing:-.8px;
+    }
+    .subtitle{
+      margin:0; color:var(--muted);
+      font-size: 15px; line-height:1.7; max-width: 62ch;
+    }
+    .cta{ display:flex; gap:10px; flex-wrap:wrap; margin-top:6px; }
+    .btn{
+      cursor:pointer; border:none; border-radius: 14px;
+      padding: 12px 14px;
+      font-weight:900;
+      color:#120812;
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      box-shadow: 0 14px 35px rgba(255,77,125,.25);
+      transition:.2s ease;
+      white-space:nowrap;
+    }
+    .btn:hover{ transform: translateY(-2px); filter:saturate(1.05); }
+    .btn.secondary{
+      background: rgba(255,255,255,.08);
+      color: var(--text);
+      border: 1px solid rgba(255,255,255,.14);
+      box-shadow:none;
+      font-weight:900;
+    }
+
+    .hero-right{ padding:18px; display:flex; flex-direction:column; gap:12px; }
+    .mini{
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: 18px;
+      padding:14px;
+    }
+    .mini h3{ margin:0 0 8px 0; font-size:14px; color: var(--accent2); letter-spacing:.2px; }
+
+    .counter{
+      display:grid; grid-template-columns: repeat(2, 1fr);
+      gap:10px; margin-top:10px;
+    }
+    .chip{
+      padding:12px; border-radius:16px;
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.10);
+    }
+    .chip .num{font-size:20px;font-weight:900}
+    .chip .lab{font-size:12px;color:var(--muted);margin-top:2px}
+
+    section{ margin-top: 18px; }
+    .section-title{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:10px; margin: 0 0 10px;
+    }
+    .section-title h2{ margin:0; font-size:18px; letter-spacing:.2px; }
+    .section-title span{ color:var(--muted); font-size:13px; }
+
+    .quote{
+      padding:14px; margin: 12px 0;
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.10);
+      border-left: 4px solid rgba(255,77,125,.7);
+      border-radius: 14px;
+      color: rgba(247,244,255,.92);
+      line-height:1.7;
+      font-size:14px;
+    }
+
+    /* Letter */
+    .letter{ padding:18px 18px 12px; }
+    .typebox{
+      padding:16px;
+      border-radius:18px;
+      background: rgba(0,0,0,.22);
+      border:1px solid rgba(255,255,255,.10);
+      min-height: 220px;
+      position:relative;
+      overflow:hidden;
+    }
+    .typed{
+      white-space:pre-wrap;
+      line-height:1.75;
+      font-size:15px;
+      color: rgba(247,244,255,.90);
+    }
+    .caret{
+      display:inline-block;
+      width:10px;
+      margin-left:2px;
+      color: var(--accent2);
+      animation: blink 1s step-start infinite;
+      font-weight:900;
+    }
+    @keyframes blink{ 50%{opacity:0} }
+    .type-controls{
+      margin-top:10px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:space-between;
+      color: var(--muted);
+      font-size:13px;
+    }
+    .speed{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+    .hidden{ display:none !important; }
+
+    /* Timeline */
+    .timeline{ padding:16px; }
+    .tl{ position:relative; padding-left:18px; }
+    .tl::before{
+      content:""; position:absolute;
+      left:7px; top:6px; bottom:6px;
+      width:2px; background: rgba(255,255,255,.12);
+    }
+    .event{
+      position:relative;
+      padding: 12px 12px 12px 14px;
+      margin: 10px 0;
+      border-radius: 18px;
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.10);
+    }
+    .event::before{
+      content:"";
+      position:absolute;
+      left:-16px; top:18px;
+      width:12px; height:12px;
+      border-radius:50%;
+      background: radial-gradient(circle at 30% 30%, #fff, var(--accent));
+      box-shadow: 0 0 18px rgba(255,77,125,.55);
+      border:1px solid rgba(255,255,255,.18);
+    }
+    .event .top{ display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; }
+    .event .name{ font-weight:900; }
+    .event .date{ color: var(--muted); font-size:13px; }
+    .event .desc{ color: rgba(247,244,255,.86); font-size:14px; margin-top:6px; line-height:1.6; }
+
+    /* Memory Lane (bioscope) */
+    .bioscope{ padding:16px; }
+    .film{
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.18);
+      overflow:hidden;
+      position:relative;
+    }
+    .film::before, .film::after{
+      content:"";
+      position:absolute;
+      left:0; right:0;
+      height:34px;
+      background:
+        radial-gradient(circle, rgba(255,255,255,.16) 28%, transparent 30%) 12px 50%/26px 26px repeat-x;
+      opacity:.65;
+      pointer-events:none;
+      z-index:2;
+    }
+    .film::before{ top:0; }
+    .film::after{ bottom:0; transform: scaleY(-1); }
+    .film-inner{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:12px;
+      padding:14px;
+      align-items:stretch;
+    }
+    @media (max-width: 900px){ .film-inner{ grid-template-columns:1fr; } }
+    .screen{
+      position:relative;
+      border-radius:16px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      min-height: 360px;
+    }
+    .screen img{
+      width:100%; height:100%;
+      object-fit:cover;
+      display:block;
+      transform: scale(1.02);
+    }
+    .screen .caption{
+      position:absolute;
+      left:12px; right:12px; bottom:12px;
+      padding:10px 12px;
+      border-radius:14px;
+      background: var(--glass);
+      border:1px solid rgba(255,255,255,.14);
+      backdrop-filter: blur(10px);
+      font-size:13px;
+      color: rgba(255,255,255,.92);
+      z-index:3;
+    }
+
+    .strip{
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      overflow:auto;
+      max-height: 360px;
+      padding:10px;
+    }
+    .stripGrid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:10px;
+    }
+    @media (max-width: 520px){ .stripGrid{ grid-template-columns: repeat(2, 1fr); } }
+    .thumb{
+      border-radius:14px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      aspect-ratio: 1/1;
+      cursor:pointer;
+      position:relative;
+    }
+    .thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .thumb .num{
+      position:absolute; top:8px; left:8px;
+      font-size:12px;
+      padding:6px 8px;
+      border-radius:999px;
+      background: rgba(0,0,0,.45);
+      border:1px solid rgba(255,255,255,.14);
+      color: rgba(255,255,255,.92);
+      backdrop-filter: blur(8px);
+    }
+    .film-controls{
+      display:flex; gap:10px; flex-wrap:wrap;
+      align-items:center; justify-content:space-between;
+      margin-top:10px;
+      color: var(--muted);
+      font-size:13px;
+    }
+    .bar{
+      flex:1;
+      min-width:220px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 12px;
+      border-radius:999px;
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.10);
+    }
+    .bar input{ width:100%; }
+
+    /* Video */
+    .video{ padding:16px; }
+    .videoWrap{
+      border-radius:18px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+    }
+    video{
+      width:100%;
+      max-height: 520px;
+      display:block;
+      background: #000;
+    }
+
+    /* Game (keep) */
+    .game{ padding:16px; }
+    .game-area{
+      height: 260px;
+      border-radius: 18px;
+      background: radial-gradient(600px 240px at 50% 0%, rgba(255,77,125,.18), rgba(255,255,255,.03));
+      border:1px solid rgba(255,255,255,.10);
+      position:relative;
+      overflow:hidden;
+      user-select:none;
+    }
+    .heart{
+      position:absolute;
+      font-size:22px;
+      filter: drop-shadow(0 8px 18px rgba(255,77,125,.35));
+      cursor:pointer;
+      animation: floatUp linear forwards;
+    }
+    @keyframes floatUp{
+      from{ transform: translateY(20px) scale(.9); opacity:0; }
+      10%{ opacity:1; }
+      to{ transform: translateY(-320px) scale(1.2); opacity:0; }
+    }
+    .game-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom:10px;
+      color: var(--muted);
+      font-size:13px;
+    }
+
+    /* Quiz (keep) */
+    .quiz{ padding:16px; }
+    .qbox{
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:18px;
+      padding:14px;
+    }
+    .qhead{
+      display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap;
+      margin-bottom:10px;
+    }
+    .qtitle{font-weight:900}
+    .qmeta{color:var(--muted); font-size:13px}
+    .answers{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+      margin-top:10px;
+    }
+    @media (max-width: 700px){ .answers{grid-template-columns: 1fr;} }
+    .ans{
+      text-align:left;
+      padding:12px 12px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      color: rgba(247,244,255,.92);
+      font-weight:900;
+      transition:.18s ease;
+      cursor:pointer;
+    }
+    .ans:hover{ transform: translateY(-1px); background: rgba(255,255,255,.06); }
+    .ans.correct{
+      border-color: rgba(110,231,183,.45);
+      background: rgba(110,231,183,.12);
+    }
+    .ans.wrong{
+      border-color: rgba(251,191,36,.45);
+      background: rgba(251,191,36,.10);
+    }
+    .result{
+      margin-top:12px;
+      color: rgba(247,244,255,.86);
+      line-height:1.6;
+      font-size:14px;
+      display:none;
+    }
+
+    /* Final bouquet */
+    .final{ padding:18px; text-align:center; }
+    .loveText{
+      margin: 8px 0 0;
+      font-size: clamp(28px, 6vw, 52px);
+      letter-spacing:-1px;
+      line-height:1.05;
+      font-weight:1000;
+      background: linear-gradient(135deg, #fff, var(--accent2), var(--accent));
+      -webkit-background-clip: text;
+      background-clip:text;
+      color:transparent;
+      text-shadow: 0 0 22px rgba(255,77,125,.18);
+    }
+    .finalSub{
+      margin:10px auto 0;
+      max-width: 70ch;
+      color: var(--muted);
+      line-height:1.8;
+      font-size:14px;
+    }
+    .bouquetArea{
+      margin-top:14px;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.16);
+      padding:14px;
+      position:relative;
+      overflow:hidden;
+      min-height: 220px;
+    }
+    .bouquetBtnRow{
+      margin-top:12px;
+      display:flex; gap:10px; justify-content:center; flex-wrap:wrap;
+    }
+
+    footer{
+      margin-top:24px;
+      text-align:center;
+      color: rgba(247,244,255,.6);
+      font-size:12px;
+    }
+
+    /* Lightbox */
+    .lightbox{
+      position:fixed; inset:0;
+      background: rgba(0,0,0,.75);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+      z-index:9999;
+    }
+    .lightbox.open{ display:flex; }
+    .lightboxBox{
+      width:min(1000px, 96vw);
+      border-radius:22px;
+      background: rgba(20,10,25,.92);
+      border:1px solid rgba(255,255,255,.14);
+      box-shadow: 0 30px 90px rgba(0,0,0,.6);
+      overflow:hidden;
+      position:relative;
+    }
+    .lightboxBox img{
+      width:100%;
+      max-height: 80vh;
+      object-fit:contain;
+      display:block;
+      background:#000;
+    }
+    .lightboxCap{
+      padding:12px 14px;
+      color: rgba(247,244,255,.88);
+      border-top:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.25);
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+      font-size:13px;
+    }
+    .xBtn{
+      cursor:pointer;
+      border:none;
+      border-radius:14px;
+      padding:10px 12px;
+      background: rgba(255,255,255,.10);
+      color: var(--text);
+      border:1px solid rgba(255,255,255,.14);
+      font-weight:900;
+    }
+
+        /* Smooth scroll */
+        html{ scroll-behavior:smooth; }
+        /* =========================
+    Cutout Pop-up Stickers
+    ========================= */
+   /* =========================
+   Looping Cutout Pop System
+========================= */
+.cutout-slot{
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 6;
+}
+
+/* one image that moves to left/right "empty space" */
+.cutout-img{
+  position: absolute;
+  width: clamp(110px, 12vw, 190px);
+  height: auto;
+  opacity: 0;
+  transform: translateY(10px) scale(.92);
+  filter: drop-shadow(0 22px 35px rgba(0,0,0,.38));
+  border-radius: 18px;
+  will-change: transform, opacity;
+}
+
+/* show animation */
+.cutout-img.show{
+  animation: popInOut var(--dur, 2.8s) cubic-bezier(.2,.9,.2,1) forwards;
+}
+
+/* left and right “empty space” anchors */
+.cutout-img.left{
+  left: clamp(10px, 2.2vw, 26px);
+  top: var(--top, 22%);
+}
+.cutout-img.right{
+  right: clamp(10px, 2.2vw, 26px);
+  top: var(--top, 26%);
+}
+
+/* Pop in -> stay -> pop out */
+@keyframes popInOut{
+  0%   { opacity: 0; transform: translateY(14px) scale(.88); }
+  18%  { opacity: 1; transform: translateY(0) scale(1); }
+  78%  { opacity: 1; transform: translateY(-4px) scale(1); }
+  100% { opacity: 0; transform: translateY(-14px) scale(.9); }
+}
+
+/* Optional: hide on small screens (so it doesn't cover content) */
+@media (max-width: 520px){
+  .cutout-slot{ display:none; }
+}
+
+
+/* =========================
+   Love Messages Section
+========================= */
+.messages{ padding:16px; }
+
+.msgWrap{
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,.10);
+  background: rgba(0,0,0,.16);
+  padding:14px;
+}
+
+.msgHint{
+  color: var(--muted);
+  font-size:13px;
+  line-height:1.7;
+  margin-bottom:10px;
+}
+
+.msgActions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+  margin-bottom:12px;
+}
+
+.chat{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.bubble{
+  width: fit-content;
+  max-width: min(680px, 92%);
+  padding:12px 12px;
+  border-radius: 18px;
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.06);
+  line-height:1.7;
+  position:relative;
+  opacity: 0;
+  transform: translateY(10px) scale(.98);
+  transition: opacity .5s ease, transform .6s cubic-bezier(.2,.9,.2,1);
+}
+
+.bubble.show{
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.bubble.him{
+  align-self:flex-start;
+  border-top-left-radius: 8px;
+  background: rgba(255,255,255,.06);
+}
+
+.bubble.me{
+  align-self:flex-end;
+  border-top-right-radius: 8px;
+  background: rgba(255,77,125,.12);
+  border-color: rgba(255,77,125,.22);
+}
+
+.bubble .meta{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  margin-top:8px;
+  font-size:11px;
+  color: rgba(247,244,255,.68);
+}
+
+.tag{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:6px 10px;
+  border-radius:999px;
+  background: rgba(0,0,0,.22);
+  border:1px solid rgba(255,255,255,.12);
+  color: rgba(247,244,255,.78);
+  font-size:12px;
+  width: fit-content;
+  margin-bottom:10px;
+}
+.deepLove{
+  padding:16px;
+}
+
+.loveBlock{
+  margin-bottom:22px;
+  padding:14px;
+  border-radius:18px;
+  background: rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+}
+
+.loveBlock h3{
+  margin:0 0 8px;
+  color: var(--accent2);
+}
+
+.loveBlock ul{
+  padding-left:18px;
+  line-height:1.8;
+  color: rgba(247,244,255,.9);
+}
+
+.softBox{
+  margin-top:12px;
+  padding:14px;
+  border-radius:14px;
+  background: rgba(255,77,125,.12);
+  border:1px solid rgba(255,77,125,.25);
+  text-align:center;
+  font-weight:700;
+  font-size:15px;
+}
+
+/* Hidden heart */
+.hiddenHeart{
+  margin-top:30px;
+  font-size:18px;
+  opacity:.25;
+  cursor:pointer;
+  transition: .3s ease;
+  width:fit-content;
+}
+
+.hiddenHeart:hover{
+  opacity:1;
+  transform:scale(1.1);
+}
+
+
+  </style>
+</head>
+
+<body>
+  <div class="glow"></div>
+  <canvas id="fx"></canvas>
+
+  <header>
+    <div class="nav">
+      <div class="brand">
+        <span class="dot"></span>
+        <span>For Roshogollah 💖</span>
+      </div>
+
+      <!-- Top music controls -->
+      <div class="top-controls" aria-label="music controls">
+        <button class="miniBtn" id="musicToggle">▶ Play</button>
+        <span class="pill" id="musicNow">🎵 Ready</span>
+        <span class="pill">🔊 <input class="vol" id="volume" type="range" min="0" max="1" step="0.01" value="0.75" /></span>
+      </div>
+
+      <nav class="links">
+        <a href="#hero">Home</a>
+        <a href="#letter">Letter</a>
+        <a href="#timeline">Timeline</a>
+        <a href="#messages">Messages</a>
+        <a href="#bioscope">Bioscope</a>
+        <a href="#video">Video</a>
+        <a href="#game">Hearts</a>
+        <a href="#quiz">Quiz</a>
+        <a href="#final">Final</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <div id="hero" class="hero card" data-music="hero" style="padding:18px;">
+      <div class="hero" style="margin:0;">
+        <div class="hero-left" style="padding:8px 4px 0;">
+          <div class="badge">🌸 Happy Valentine’s Day</div>
+          <h1 class="title">Hi Roshogollah…</h1>
+          <p class="subtitle">
+            From <b>Sondeshh</b> (your <b>Lokkhi</b>… and now <b>OHI</b> too 😌),
+            thank you for loving me softly and caring for me like my maa.
+          </p>
+
+          <div class="cta">
+            <button class="btn" id="startFxBtn">Start flowers ✨</button>
+            <button class="btn secondary" id="openLightboxHint">How to see photos? 📸</button>
+          </div>
+
+          <div class="counter" aria-label="love counter">
+            <div class="chip">
+              <div class="num" id="days">44</div>
+              <div class="lab">days (and counting)</div>
+            </div>
+            <div class="chip">
+              <div class="num" id="hours">1056</div>
+              <div class="lab">hours</div>
+            </div>
+            <div class="chip">
+              <div class="num" id="minutes">63360</div>
+              <div class="lab">minutes</div>
+            </div>
+            <div class="chip">
+              <div class="num" id="seconds">3800000</div>
+              <div class="lab">seconds কাছাকাছি</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-right" style="padding:8px 0 0;">
+          <div class="mini">
+            <h3>💖 Nicknames we love</h3>
+            <div class="pill">Him: <b>Roshogollah</b> • <b>Pukus Pukus</b> • <b>Lokkhishona</b></div>
+            <div class="pill">Me: <b>Sondeshh</b> • <b>Lokkhi</b> • <b>OHI</b></div>
+          </div>
+
+          <div class="mini">
+            <h3>🌷 One thing I want you to know</h3>
+            <div class="quote">“Time doesn’t feel short when it’s real.”</div>
+            <div class="pill">Music crossfades automatically as you scroll 🎶</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LETTER -->
+    <section id="letter" class="card letter" data-music="letter">
+      <div class="section-title">
+        <h2>💌 Love letter (typewriter)</h2>
+        <span>Play button appears here</span>
+      </div>
+
+      <div class="typebox">
+        <div class="typed" id="typedText"></div><span class="caret" id="caret">|</span>
+      </div>
+
+      <div class="type-controls">
+        <div>Progress: <b id="typeProg">0%</b></div>
+        <div class="speed">
+          <button class="miniBtn secondary hidden" id="typeBtn">Play the letter ✍️</button>
+          <span>Speed</span>
+          <input id="speed" type="range" min="10" max="60" step="1" value="28" />
+          <span class="pill" id="speedVal">28 ms</span>
+        </div>
+      </div>
+
+      <div class="quote">
+        My dear <b>Pukus Pukus</b>… written by your <b>Lokkhi</b> (Sondeshh / OHI) ❤️
+      </div>
+    </section>
+
+    <!-- TIMELINE -->
+    <section id="timeline" class="card timeline" data-music="timeline">
+      <div class="section-title">
+        <h2>🕰️ Our timeline</h2>
+        <span>First steps → forever vibes</span>
+      </div>
+      <div class="tl" id="timelineList"></div>
+    </section>
+<!-- LOVE MESSAGES -->
+<section id="messages" class="card messages" data-music="letter">
+  <div class="section-title">
+    <h2>💬 Love Messages</h2>
+    <span>My favorite lines from you</span>
+  </div>
+
+  <div class="msgWrap">
+    <div class="msgHint">
+      Tap <b>Reveal</b> to show them one by one… like our late night chats 🌙
+    </div>
+
+    <div class="msgActions">
+      <button class="miniBtn secondary" id="revealOne">Reveal 💗</button>
+      <button class="miniBtn secondary" id="revealAll">Reveal all ✨</button>
+      <button class="miniBtn secondary" id="hideAll">Hide</button>
+    </div>
+
+    <div class="chat" id="chat"></div>
+  </div>
+</section>
+
+    <!-- BIOSCOPE MEMORY LANE -->
+    <section id="bioscope" class="card bioscope" data-music="memories">
+      <div class="section-title">
+        <h2>🎞️ Memory Lane (Bioscope)</h2>
+        <span>Click any photo → fullscreen</span>
+      </div>
+
+      <div class="film">
+        <div class="film-inner">
+          <div class="screen" id="screen">
+            <img id="screenImg" src="" alt="Memory" />
+            <div class="caption" id="screenCap">Loading…</div>
+          </div>
+
+          <div class="strip" id="strip">
+            <div class="stripGrid" id="stripGrid"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="film-controls">
+        <div class="bar">
+          <span>⏮</span>
+          <input id="slideRange" type="range" min="1" max="20" step="1" value="1" />
+          <span>⏭</span>
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;">
+          <button class="miniBtn secondary" id="prevSlide">Prev</button>
+          <button class="miniBtn secondary" id="playSlide">Auto Play</button>
+          <button class="miniBtn secondary" id="nextSlide">Next</button>
+        </div>
+      </div>
+
+      <div class="quote" style="margin-bottom:0;">
+        <b>All sweet memories </b>.
+      </div>
+    </section>
+
+    <!-- VIDEO -->
+    <section id="video" class="card video" data-music="video">
+      <div class="section-title">
+        <h2>🎥 Our video</h2>
+        <span>One small clip, big feelings</span>
+      </div>
+
+      <div class="videoWrap">
+        <!-- Replace video.mp4 with your file -->
+        <video controls preload="metadata">
+          <source src="video.mp4" type="video/mp4">
+          Your browser does not support video.
+        </video>
+      </div>
+
+      <div class="quote" style="margin-bottom:0;">
+        I love this.❤
+      </div>
+    </section>
+
+    <!-- GAME -->
+    <section id="game" class="card game" data-music="game">
+      <div class="section-title">
+        <h2>🎮 Catch the Hearts</h2>
+        <span>Reach 14 to unlock a secret 💖</span>
+      </div>
+
+      <div class="game-top">
+        <div>Score: <b id="score">0</b> | Missed: <b id="missed">0</b></div>
+        <div>
+          <button class="miniBtn secondary" id="gameStart">Start</button>
+          <button class="miniBtn secondary" id="gameReset">Reset</button>
+        </div>
+      </div>
+
+      <div class="game-area" id="gameArea"></div>
+      <p style="margin:10px 0 0; color: var(--muted); font-size:13px;">
+        Tip: Music keeps crossfading as you move between sections 🎶
+      </p>
+    </section>
+
+    <!-- QUIZ -->
+    <section id="quiz" class="card quiz" data-music="quiz">
+      <div class="section-title">
+        <h2>🧠 Mini quiz: “How well do you know us?”</h2>
+        <span>For my Lokkhishona 😄</span>
+      </div>
+
+      <div class="qbox">
+        <div class="qhead">
+          <div class="qtitle" id="qTitle">Question</div>
+          <div class="qmeta"><span id="qIndex">1</span>/<span id="qTotal">5</span> • Score: <b id="qScore">0</b></div>
+        </div>
+
+        <div class="qmeta" id="qText" style="line-height:1.7;"></div>
+        <div class="answers" id="answers"></div>
+        <div class="result" id="qResult"></div>
+
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; justify-content:space-between;">
+          <button class="miniBtn secondary" id="prevQ">⬅ Prev</button>
+          <button class="miniBtn secondary" id="restartQuiz">Restart</button>
+          <button class="miniBtn secondary" id="nextQ">Next ➡</button>
+        </div>
+      </div>
+    </section>
+    <!-- EXTRA LOVE SECTION -->
+<section id="deepLove" class="card deepLove">
+
+  <div class="section-title">
+    <h2>🤍 A Little More From Me</h2>
+    <span>Read slowly…</span>
+  </div>
+
+  <!-- VOICE NOTE -->
+  <div class="loveBlock">
+    <h3>🎙 A voice from your Sondeshh</h3>
+    <p>If you're hearing this… it means you scrolled all the way. That makes me happy already.</p>
+    <audio controls>
+      <source src="voice.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+
+  <!-- FUTURE US -->
+  <div class="loveBlock">
+    <h3>🌙 Future Us</h3>
+    <ul>
+      <li>One day I want to fall asleep without hanging up.</li>
+      <li>One day I want you to say “ami asi” from the next pillow.</li>
+      <li>One day our late night talks will become everyday talks.</li>
+      <li>One day we’ll look back at this website and smile.</li>
+    </ul>
+  </div>
+
+  <!-- MY PROMISE -->
+  <div class="loveBlock">
+    <h3>🤍 My Promise To You</h3>
+    <ul>
+      <li>I will try to calm down before shouting.</li>
+      <li>I will try to understand you like you understand me.</li>
+      <li>I will grow with you.</li>
+      <li>I will choose you consciously.</li>
+    </ul>
+  </div>
+
+  <!-- IF YOU EVER DOUBT -->
+  <div class="loveBlock">
+    <h3>🛡 If You Ever Doubt</h3>
+    <p>
+      If you ever feel tired, overwhelmed, or not good enough…
+      come back here and read this:
+    </p>
+    <div class="softBox">
+      I chose you. I am not going anywhere.
+    </div>
+  </div>
+
+  <!-- HIDDEN HEART -->
+  <div class="hiddenHeart" id="hiddenHeart">🤍</div>
+
+</section>
+
+
+    <!-- FINAL -->
+    <section id="final" class="card final" data-music="final">
+      <div class="section-title">
+        <h2>💐 The final</h2>
+        <span>Scroll here for the bouquet</span>
+      </div>
+
+      <div class="loveText">I LOVE YOU</div>
+      <div class="finalSub">
+        Roshogollah, you’re my peace, my comfort, my favorite person.
+        Forever your Sondeshh (Lokkhi / OHI). ❤️
+      </div>
+
+      <div class="bouquetArea" id="bouquetArea">
+        <div style="color:var(--muted); font-size:13px;">
+          When you reach this section, flowers will bloom… 🌸💐
+        </div>
+      </div>
+
+      <div class="bouquetBtnRow">
+        <button class="miniBtn" id="bouquetBtn">Bloom again 💐</button>
+        <button class="miniBtn secondary" id="openAllPhotos">Open a random memory 🔍</button>
+      </div>
+    </section>
+    <!-- Floating cutout stickers -->
+      <div class="cutout-slot" aria-hidden="true">
+        <img id="cutoutImg" class="cutout-img" src="" alt="">
+      </div>
+
+
+    <footer>
+      Made with love by <b>Sondeshh</b> for <b>Roshogollah</b>. 🌸❤️
+    </footer>
+  </main>
+
+  <!-- Crossfade audio (two layers) -->
+  <audio id="a1" preload="auto" loop></audio>
+  <audio id="a2" preload="auto" loop></audio>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <div class="lightboxBox">
+      <img id="lbImg" src="" alt="Full view" />
+      <div class="lightboxCap">
+        <div id="lbCap">Memory</div>
+        <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+          <button class="xBtn" id="lbPrev">Prev</button>
+          <button class="xBtn" id="lbNext">Next</button>
+          <button class="xBtn" id="lbClose">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // =========================================================
+    // 0) Helpers
+    // =========================================================
+    const $ = (id) => document.getElementById(id);
+
+    // =========================================================
+    // 1) Counter
+    // =========================================================
+    const start = new Date();
+    start.setDate(start.getDate() - 44);
+    start.setHours(0,0,0,0);
+
+    function updateCounter(){
+      const now = new Date();
+      const diff = Math.max(0, now - start);
+
+      const totalSeconds = Math.floor(diff / 1000);
+      const totalMinutes = Math.floor(totalSeconds / 60);
+      const totalHours = Math.floor(totalMinutes / 60);
+      const totalDays = Math.floor(totalHours / 24);
+
+      $("days").textContent = totalDays.toLocaleString();
+      $("hours").textContent = totalHours.toLocaleString();
+      $("minutes").textContent = totalMinutes.toLocaleString();
+      $("seconds").textContent = totalSeconds.toLocaleString();
+    }
+    updateCounter();
+    setInterval(updateCounter, 1000);
+
+    // =========================================================
+    // 2) FX (flowers/sparkles) canvas
+    // =========================================================
+    const canvas = $("fx");
+    const ctx = canvas.getContext("2d");
+    let dpr = 1;
+    let fxEnabled = false;
+
+    function resize(){
+      dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
+      canvas.width = Math.floor(window.innerWidth * dpr);
+      canvas.height = Math.floor(window.innerHeight * dpr);
+      canvas.style.width = window.innerWidth + "px";
+      canvas.style.height = window.innerHeight + "px";
+      ctx.setTransform(1,0,0,1,0,0);
+      ctx.scale(dpr, dpr);
+    }
+    window.addEventListener("resize", resize);
+    resize();
+
+    const petals = [];
+    const emojis = ["🌸","🌷","💮","✨","💕","💖","💐"];
+
+    function addPetal(){
+      petals.push({
+        x: Math.random() * window.innerWidth,
+        y: -20 - Math.random() * 200,
+        s: 12 + Math.random() * 16,
+        r: Math.random() * Math.PI * 2,
+        vr: (-0.02 + Math.random()*0.04),
+        vy: 0.6 + Math.random() * 1.2,
+        vx: -0.4 + Math.random() * 0.8,
+        a: 0.55 + Math.random() * 0.35,
+        t: emojis[Math.floor(Math.random() * emojis.length)]
+      });
+    }
+    for(let i=0;i<45;i++) addPetal();
+
+    const sparks = [];
+    function burst(n=12, cx=null, cy=null){
+      const x0 = cx ?? (window.innerWidth * 0.5);
+      const y0 = cy ?? (window.innerHeight * 0.35);
+      for (let i=0;i<n;i++){
+        const ang = Math.random() * Math.PI * 2;
+        const sp = 1 + Math.random() * 3.2;
+        sparks.push({
+          x: x0 + (Math.random()*10 - 5),
+          y: y0 + (Math.random()*10 - 5),
+          vx: Math.cos(ang) * sp,
+          vy: Math.sin(ang) * sp - 1.5,
+          life: 40 + Math.random()*25,
+          maxLife: 60,
+          size: 12 + Math.random()*10,
+          t: Math.random() < 0.55 ? "✨" : (Math.random() < 0.5 ? "🌸" : "💐")
+        });
+      }
+    }
+
+    function draw(){
+      ctx.clearRect(0,0,window.innerWidth, window.innerHeight);
+
+      if (fxEnabled){
+        if (petals.length < 75 && Math.random() < 0.18) addPetal();
+
+        for (let i = petals.length - 1; i >= 0; i--){
+          const p = petals[i];
+          p.x += p.vx;
+          p.y += p.vy;
+          p.r += p.vr;
+          p.x += Math.sin((p.y + i) * 0.01) * 0.6;
+
+          ctx.save();
+          ctx.globalAlpha = p.a;
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.r);
+          ctx.font = `${p.s}px ui-sans-serif`;
+          ctx.fillText(p.t, 0, 0);
+          ctx.restore();
+
+          if (p.y > window.innerHeight + 40){
+            petals.splice(i, 1);
+            addPetal();
+          }
+        }
+
+        for (let i = sparks.length - 1; i >= 0; i--){
+          const s = sparks[i];
+          s.x += s.vx;
+          s.y += s.vy;
+          s.life -= 1;
+          s.vy += 0.02;
+
+          ctx.save();
+          ctx.globalAlpha = Math.max(0, s.life / s.maxLife);
+          ctx.font = `${s.size}px ui-sans-serif`;
+          ctx.fillText(s.t, s.x, s.y);
+          ctx.restore();
+
+          if (s.life <= 0) sparks.splice(i, 1);
+        }
+      }
+      requestAnimationFrame(draw);
+    }
+    requestAnimationFrame(draw);
+
+    $("startFxBtn").addEventListener("click", () => {
+      fxEnabled = true;
+      burst(26);
+    });
+
+    window.addEventListener("click", (e) => {
+      if (!fxEnabled) return;
+      burst(10, e.clientX, e.clientY);
+    }, { passive:true });
+
+    // =========================================================
+    // 3) MUSIC CROSSFADE BETWEEN SECTIONS (super smooth)
+    // =========================================================
+    const a1 = $("a1");
+    const a2 = $("a2");
+    const musicToggle = $("musicToggle");
+    const musicNow = $("musicNow");
+    const volume = $("volume");
+
+    const TRACKS = {
+      hero:     { src: "music-hero.mp3",     label: "Home vibe" },
+      letter:   { src: "music-letter.mp3",   label: "Letter mood" },
+      timeline: { src: "music-timeline.mp3", label: "Timeline vibe" },
+      memories: { src: "music-memories.mp3", label: "Bioscope mood" },
+      video:    { src: "music-memories.mp3", label: "Video mood" },
+      game:     { src: "music-game.mp3",     label: "Game energy" },
+      quiz:     { src: "music-quiz.mp3",     label: "Quiz fun" },
+      final:    { src: "music-letter.mp3",   label: "Final love" }
+    };
+
+    let userAllowedAudio = false;
+    let isPlaying = false;
+    let active = 1; // which audio is currently audible
+    let currentKey = "hero";
+
+    function setVolumes(vActive, vInactive){
+      const base = parseFloat(volume.value);
+      if (active === 1){
+        a1.volume = base * vActive;
+        a2.volume = base * vInactive;
+      } else {
+        a2.volume = base * vActive;
+        a1.volume = base * vInactive;
+      }
+    }
+
+    function getActiveAudio(){ return active === 1 ? a1 : a2; }
+    function getInactiveAudio(){ return active === 1 ? a2 : a1; }
+
+    volume.addEventListener("input", () => {
+      // keep relative fade, but update base volume
+      setVolumes(1, 0);
+    });
+
+    async function toggleMusic(){
+      userAllowedAudio = true;
+      try{
+        if (!isPlaying){
+          // start both, but only one audible
+          const act = getActiveAudio();
+          const ina = getInactiveAudio();
+          act.volume = parseFloat(volume.value);
+          ina.volume = 0;
+          await act.play();
+          await ina.play();
+          isPlaying = true;
+          musicToggle.textContent = "⏸ Pause";
+        } else {
+          a1.pause(); a2.pause();
+          isPlaying = false;
+          musicToggle.textContent = "▶ Play";
+        }
+      }catch(e){
+        // ignore
+      }
+    }
+    musicToggle.addEventListener("click", toggleMusic);
+
+    function loadInitial(){
+      const t = TRACKS.hero;
+      a1.src = t.src;
+      a2.src = t.src;
+      musicNow.textContent = `🎵 ${t.label}`;
+      setVolumes(1, 0);
+    }
+    loadInitial();
+
+    function crossfadeTo(key){
+      if (key === currentKey) return;
+      currentKey = key;
+
+      const track = TRACKS[key] || TRACKS.hero;
+      musicNow.textContent = `🎵 ${track.label}`;
+
+      // Prepare inactive audio with new track
+      const ina = getInactiveAudio();
+      ina.src = track.src;
+      ina.load();
+
+      if (!isPlaying || !userAllowedAudio){
+        // Just switch active source silently
+        const act = getActiveAudio();
+        act.src = track.src;
+        act.load();
+        return;
+      }
+
+      // Ensure both play (browser may reject; ignore)
+      ina.play().catch(()=>{});
+      getActiveAudio().play().catch(()=>{});
+
+      // Fade (super smooth)
+      const duration = 1200; // ms
+      const steps = 40;
+      let i = 0;
+      const timer = setInterval(() => {
+        i++;
+        const t = i/steps;
+        // equal-power-ish curve (smoother feel)
+        const vIn = Math.sin((t * Math.PI) / 2);
+        const vOut = Math.cos((t * Math.PI) / 2);
+        // current active fades out, inactive fades in
+        if (active === 1){
+          a1.volume = parseFloat(volume.value) * vOut;
+          a2.volume = parseFloat(volume.value) * vIn;
+        }else{
+          a2.volume = parseFloat(volume.value) * vOut;
+          a1.volume = parseFloat(volume.value) * vIn;
+        }
+        if (i >= steps){
+          clearInterval(timer);
+          // swap active
+          active = active === 1 ? 2 : 1;
+          // set final volumes
+          setVolumes(1, 0);
+        }
+      }, duration/steps);
+    }
+
+    // Observe sections -> crossfade
+    const sectionIds = ["hero","letter","timeline","bioscope","video","game","quiz","final"];
+    const keyById = {
+      hero:"hero", letter:"letter", timeline:"timeline",
+      bioscope:"memories", video:"video",
+      game:"game", quiz:"quiz", final:"final"
+    };
+
+    // Show play-letter button when letter is visible
+    let letterButtonShown = false;
+    const typeBtn = $("typeBtn");
+    function showLetterButton(){
+      if (letterButtonShown) return;
+      letterButtonShown = true;
+      typeBtn.classList.remove("hidden");
+    }
+
+    const io = new IntersectionObserver((entries) => {
+      const visible = entries
+        .filter(e => e.isIntersecting)
+        .sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (!visible) return;
+
+      const id = visible.target.id;
+      const key = keyById[id] || "hero";
+      crossfadeTo(key);
+
+      if (id === "letter") showLetterButton();
+      if (id === "final") triggerBouquetOnce();
+    }, { threshold:[0.35,0.55,0.7] });
+
+    sectionIds.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) io.observe(el);
+    });
+
+    // =========================================================
+    // 4) Typewriter (no auto-music)
+    // =========================================================
+    const typedText = $("typedText");
+    const caret = $("caret");
+    const speedRange = $("speed");
+    const speedVal = $("speedVal");
+    const typeProg = $("typeProg");
+
+    const LOVE_LETTER = `Hi Roshogollah (my Pukus Pukus, my Lokkhishona) ❤️
+
+From Sondeshh — your Lokkhi… and OHI too 😌
+
+Today I just want to say how lucky I am to have you.
+You are so caring — you always cared for me like my maa.
+
+I still remember when we were returning…
+My maa was calling, I was asleep, and at the same time you were also calling.
+I got pissed and shouted at my mom first… then on you.
+But you stayed so calm, like:
+“ok baby calm down, kisu hyse? amk bolo. aunt boka dise?”
+And I said: “jaa shor kothai bolbo nh”
+…but you were still gentle with me.
+
+Our late night talks…
+I’m such a sleepyhead.
+You say, “ami asi, tumi ghumai jaw.”
+And even when you feel sleepy, you don’t give up.
+If I’m awake, you will talk to me as long as you can.
+
+For me, it has been 44 days,
+1,056 hours,
+63,360 minutes,
+and more than 3.8 million seconds of growing closer to you.
+
+Time doesn’t feel short when it’s real.
+
+Happy Valentine’s Day, my love.
+— Your Sondeshh ❤️`;
+
+    let typing = false;
+    let idx = 0;
+    let timer = null;
+
+    function setSpeedLabel(){ speedVal.textContent = `${speedRange.value} ms`; }
+    setSpeedLabel();
+    speedRange.addEventListener("input", setSpeedLabel);
+
+    function resetTypewriter(){
+      idx = 0;
+      typedText.textContent = "";
+      typeProg.textContent = "0%";
+      typing = false;
+      clearTimeout(timer);
+      caret.style.display = "inline-block";
+    }
+
+    function typeStep(){
+      const speed = parseInt(speedRange.value, 10);
+      if (idx >= LOVE_LETTER.length){
+        typing = false;
+        typeProg.textContent = "100%";
+        caret.style.display = "none";
+        return;
+      }
+      typedText.textContent += LOVE_LETTER[idx++];
+      typeProg.textContent = Math.floor((idx / LOVE_LETTER.length) * 100) + "%";
+      timer = setTimeout(typeStep, speed);
+    }
+
+    typeBtn.addEventListener("click", () => {
+      if (!typing && idx === 0){
+        typing = true;
+        typeStep();
+        return;
+      }
+      if (typing){
+        clearTimeout(timer);
+        typedText.textContent = LOVE_LETTER;
+        idx = LOVE_LETTER.length;
+        typing = false;
+        typeProg.textContent = "100%";
+        caret.style.display = "none";
+        return;
+      }
+      if (!typing && idx >= LOVE_LETTER.length){
+        resetTypewriter();
+        typing = true;
+        typeStep();
+      }
+    });
+
+    // =========================================================
+    // 5) Timeline
+    // =========================================================
+    const timelineData = [
+      { date: "16 Nov 2025", title: "First text 💬", desc: "The beginning of something real." },
+      { date: "9 Dec 2025",  title: "First call ☎️", desc: "That first voice moment… unforgettable." },
+      { date: "9 Dec 2025",  title: "First meet 🫶", desc: "From screen to real life — and it felt right." },
+      { date: "11 Jan 2026", title: "First kiss 😘", desc: "A soft moment I’ll never forget." },
+      { date: "19 Jan 2026", title: "First hug 🤍", desc: "The safest place in the world." },
+      { date: "10 Feb 2026", title: "First 💋 kiss", desc: "Okay… this one deserves a whole chapter." },
+      { date: "14 Feb 2026", title: "Valentine’s Day 🌸", desc: "This website — my way of saying: I love you." },
+    ];
+    $("timelineList").innerHTML = timelineData.map(e => `
+      <div class="event">
+        <div class="top">
+          <div class="name">${e.title}</div>
+          <div class="date">${e.date}</div>
+        </div>
+        <div class="desc">${e.desc}</div>
+      </div>
+    `).join("");
+
+    // =========================================================
+    // 6) Bioscope Memory Lane + Lightbox
+    // =========================================================
+    // Add 15–20 pictures here (or keep 20). Use your own captions too.
+    const MEMS = Array.from({length: 15}, (_, i) => {
+        const n = String(i+1).padStart(2,"0");
+        return {
+        src: `memories/${n}.jpg`,
+        cap: `Memory #${i+1} — our little moment 💖`
+        };
+    });
+
+
+    const stripGrid = $("stripGrid");
+    const screenImg = $("screenImg");
+    const screenCap = $("screenCap");
+    const slideRange = $("slideRange");
+    slideRange.max = MEMS.length;
+
+    let cur = 0;
+    let auto = null;
+
+    function renderStrip(){
+      stripGrid.innerHTML = MEMS.map((m, i) => `
+        <div class="thumb" data-i="${i}">
+          <span class="num">${i+1}</span>
+          <img src="${m.src}" alt="Memory ${i+1}">
+        </div>
+      `).join("");
+
+      stripGrid.querySelectorAll(".thumb").forEach(el => {
+        el.addEventListener("click", () => {
+          const i = parseInt(el.dataset.i, 10);
+          showSlide(i);
+          openLightbox(i);
+        });
+      });
+    }
+
+    function showSlide(i){
+      cur = (i + MEMS.length) % MEMS.length;
+      const m = MEMS[cur];
+      screenImg.src = m.src;
+      screenCap.textContent = m.cap;
+      slideRange.value = (cur + 1);
+    }
+
+    $("prevSlide").addEventListener("click", () => showSlide(cur - 1));
+    $("nextSlide").addEventListener("click", () => showSlide(cur + 1));
+    slideRange.addEventListener("input", () => showSlide(parseInt(slideRange.value,10) - 1));
+
+    $("playSlide").addEventListener("click", () => {
+      if (auto){
+        clearInterval(auto);
+        auto = null;
+        $("playSlide").textContent = "Auto Play";
+        return;
+      }
+      $("playSlide").textContent = "Stop";
+      auto = setInterval(() => showSlide(cur + 1), 2200);
+    });
+
+    renderStrip();
+    showSlide(0);
+
+    // Lightbox
+    const lightbox = $("lightbox");
+    const lbImg = $("lbImg");
+    const lbCap = $("lbCap");
+    let lbIndex = 0;
+
+    function openLightbox(i){
+      lbIndex = i;
+      lbImg.src = MEMS[lbIndex].src;
+      lbCap.textContent = `${lbIndex+1}/${MEMS.length} — ${MEMS[lbIndex].cap}`;
+      lightbox.classList.add("open");
+    }
+    function closeLightbox(){
+      lightbox.classList.remove("open");
+    }
+    function lbShow(i){
+      lbIndex = (i + MEMS.length) % MEMS.length;
+      lbImg.src = MEMS[lbIndex].src;
+      lbCap.textContent = `${lbIndex+1}/${MEMS.length} — ${MEMS[lbIndex].cap}`;
+    }
+
+    $("lbClose").addEventListener("click", closeLightbox);
+    $("lbPrev").addEventListener("click", () => lbShow(lbIndex - 1));
+    $("lbNext").addEventListener("click", () => lbShow(lbIndex + 1));
+    lightbox.addEventListener("click", (e) => { if(e.target === lightbox) closeLightbox(); });
+
+    window.addEventListener("keydown", (e) => {
+      if (!lightbox.classList.contains("open")) return;
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowLeft") lbShow(lbIndex - 1);
+      if (e.key === "ArrowRight") lbShow(lbIndex + 1);
+    });
+
+    $("openAllPhotos").addEventListener("click", () => {
+      const i = Math.floor(Math.random() * MEMS.length);
+      openLightbox(i);
+    });
+
+    // Help hint
+    $("openLightboxHint").addEventListener("click", () => {
+      openLightbox(0);
+      lbCap.textContent = `nomo nomo`;
+    });
+
+    // =========================================================
+    // 7) Game
+    // =========================================================
+    const gameArea = $("gameArea");
+    const scoreEl = $("score");
+    const missedEl = $("missed");
+    let score = 0, missed = 0, gameTimer = null, running = false;
+
+    function spawnHeart(){
+      const el = document.createElement("div");
+      el.className = "heart";
+      el.textContent = Math.random() < 0.65 ? "💖" : (Math.random() < 0.5 ? "❤️" : "💕");
+
+      const x = Math.random() * (gameArea.clientWidth - 30);
+      const duration = 1700 + Math.random() * 1500;
+
+      el.style.left = x + "px";
+      el.style.bottom = "-10px";
+      el.style.animationDuration = duration + "ms";
+
+      el.addEventListener("click", () => {
+        score++;
+        scoreEl.textContent = score;
+        el.remove();
+
+        const rect = gameArea.getBoundingClientRect();
+        burst(8, rect.left + x, rect.top + rect.height - 10);
+
+        if (score === 14){
+          // little sparkle celebration
+          fxEnabled = true;
+          for(let i=0;i<4;i++) burst(18, rect.left + rect.width/2, rect.top + rect.height/2);
+        }
+      });
+
+      el.addEventListener("animationend", () => {
+        if (el.isConnected){
+          missed++;
+          missedEl.textContent = missed;
+          el.remove();
+        }
+      });
+
+      gameArea.appendChild(el);
+    }
+
+    $("gameStart").addEventListener("click", () => {
+      if (running) return;
+      running = true;
+      gameTimer = setInterval(spawnHeart, 520);
+    });
+    $("gameReset").addEventListener("click", () => {
+      running = false;
+      clearInterval(gameTimer);
+      gameTimer = null;
+      score = 0; missed = 0;
+      scoreEl.textContent = "0";
+      missedEl.textContent = "0";
+      [...gameArea.querySelectorAll(".heart")].forEach(h => h.remove());
+    });
+
+    // =========================================================
+    // 8) Quiz
+    // =========================================================
+    const quiz = [
+      {
+        title: "Our first text was on…",
+        text: "Pick the correct date 💬",
+        answers: ["16th November 2025", "9th December 2025", "11th January 2026", "19th January 2026"],
+        correct: 0,
+        explain: "Yes! 16th November 2025 — that was our first text. 💗"
+      },
+      {
+        title: "We first met in person on…",
+        text: "Same day as our first call 😉",
+        answers: ["16th November 2025", "9th December 2025", "10th February 2026", "14th February 2026"],
+        correct: 1,
+        explain: "Correct! 9th December 2025 — first call and first meet. 🫶"
+      },
+      {
+        title: "When I got sleepy, you used to say…",
+        text: "Which line is the most “you”?",
+        answers: [
+          "“Ami asi, tumi ghumai jaw.”",
+          "“Tumi ar kotha bolo na.”",
+          "“Ajke ar call hobe na.”",
+          "“Bye, kal kotha hobe.”"
+        ],
+        correct: 0,
+        explain: "Yes! You always said “Ami asi, tumi ghumai jaw.” 🥺❤️"
+      },
+      {
+        title: "Your calm line when I was angry was…",
+        text: "The one that melted my anger instantly 😭",
+        answers: [
+          "“Aunt boka dise?”",
+          "“Ok baby calm down, kisu hyse? amk bolo. aunt boka dise?”",
+          "“Ami jani tumi rag korba.”",
+          "“Chill, kichu hoy nai.”"
+        ],
+        correct: 1,
+        explain: "Exactly! That full line is my forever comfort. 🤍"
+      },
+      {
+        title: "The “first 💋 kiss” happened on…",
+        text: "The extra-special emoji date 💋",
+        answers: ["11th January 2026", "19th January 2026", "10th February 2026", "9th December 2025"],
+        correct: 2,
+        explain: "Yesss 💋 10th February 2026 — unforgettable. 😘"
+      }
+    ];
+
+    $("qTotal").textContent = quiz.length;
+    let qi = 0;
+    let qScore = 0;
+    const answered = new Array(quiz.length).fill(null);
+
+    function renderQuiz(){
+      const q = quiz[qi];
+      $("qTitle").textContent = q.title;
+      $("qText").textContent = q.text;
+      $("qIndex").textContent = (qi + 1);
+      $("qScore").textContent = qScore;
+
+      $("answers").innerHTML = "";
+      $("qResult").style.display = "none";
+      $("qResult").textContent = "";
+
+      q.answers.forEach((a, i) => {
+        const btn = document.createElement("button");
+        btn.className = "ans";
+        btn.textContent = a;
+
+        const chosen = answered[qi];
+        if (chosen !== null){
+          btn.disabled = true;
+          btn.style.cursor = "not-allowed";
+          if (i === q.correct) btn.classList.add("correct");
+          if (i === chosen && chosen !== q.correct) btn.classList.add("wrong");
+        } else {
+          btn.addEventListener("click", () => chooseAnswer(i));
+        }
+        $("answers").appendChild(btn);
+      });
+
+      $("prevQ").disabled = (qi === 0);
+      $("nextQ").disabled = (qi === quiz.length - 1);
+
+      if (answered[qi] !== null) showExplain();
+    }
+
+    function chooseAnswer(i){
+      const q = quiz[qi];
+      answered[qi] = i;
+
+      if (i === q.correct){
+        qScore++;
+        $("qScore").textContent = qScore;
+        burst(12);
+      }else{
+        burst(6);
+      }
+      showExplain();
+      renderQuiz();
+    }
+
+    function showExplain(){
+      const q = quiz[qi];
+      $("qResult").style.display = "block";
+      const chosen = answered[qi];
+      const ok = chosen === q.correct;
+      $("qResult").innerHTML = ok
+        ? `<b style="color: var(--ok)">Correct!</b> ${q.explain}`
+        : `<b style="color: var(--warn)">Almost!</b> ${q.explain}`;
+    }
+
+    $("prevQ").addEventListener("click", () => { qi = Math.max(0, qi - 1); renderQuiz(); });
+    $("nextQ").addEventListener("click", () => { qi = Math.min(quiz.length - 1, qi + 1); renderQuiz(); });
+    $("restartQuiz").addEventListener("click", () => {
+      qi = 0; qScore = 0;
+      for (let i=0;i<answered.length;i++) answered[i] = null;
+      renderQuiz();
+      burst(14);
+    });
+    renderQuiz();
+
+    // =========================================================
+    // 9) FINAL: “I LOVE YOU” bouquet animation
+    // =========================================================
+    const bouquetArea = $("bouquetArea");
+    function bloomBouquet(){
+      fxEnabled = true;
+      const rect = bouquetArea.getBoundingClientRect();
+      const cx = rect.left + rect.width/2;
+      const cy = rect.top + rect.height/2;
+
+      // multiple bursts to feel like bouquet
+      for(let i=0;i<6;i++){
+        setTimeout(() => burst(26, cx + (Math.random()*120-60), cy + (Math.random()*60-30)), i*120);
+      }
+
+      // add floating bouquet emojis inside the box
+      const bouquetEmojis = ["💐","🌸","🌷","✨","💖"];
+      for(let i=0;i<18;i++){
+        const s = document.createElement("div");
+        s.textContent = bouquetEmojis[Math.floor(Math.random()*bouquetEmojis.length)];
+        s.style.position = "absolute";
+        s.style.left = (Math.random()*90+5) + "%";
+        s.style.bottom = "-10px";
+        s.style.fontSize = (18 + Math.random()*18) + "px";
+        s.style.opacity = "0.95";
+        s.style.filter = "drop-shadow(0 10px 20px rgba(255,77,125,.25))";
+        s.style.animation = `floatUpBox ${2.2 + Math.random()*1.2}s linear forwards`;
+        bouquetArea.appendChild(s);
+        s.addEventListener("animationend", () => s.remove());
+      }
+    }
+
+    // keyframes injected for bouquet
+    const styleEl = document.createElement("style");
+    styleEl.textContent = `
+      @keyframes floatUpBox{
+        from{ transform: translateY(30px) scale(.9); opacity:0; }
+        15%{ opacity:1; }
+        to{ transform: translateY(-260px) scale(1.2); opacity:0; }
+      }
+    `;
+    document.head.appendChild(styleEl);
+
+    $("bouquetBtn").addEventListener("click", bloomBouquet);
+
+    let bouquetTriggered = false;
+    function triggerBouquetOnce(){
+      if (bouquetTriggered) return;
+      bouquetTriggered = true;
+      setTimeout(bloomBouquet, 400);
+    }
+    // =========================================================
+// Cutout stickers pop-in
+// =========================================================
+    // =========================================================
+// Dynamic Cutout Stickers (add unlimited)
+// =========================================================
+
+const CUTOUTS = [
+  "cutouts/c1.png",
+  "cutouts/c2.png",
+  "cutouts/c3.png",
+  "cutouts/c4.png",
+  "cutouts/c5.png",
+  "cutouts/c6.png",
+  "cutouts/c7.png",
+  "cutouts/c8.png",
+  "cutouts/c9.png",
+  "cutouts/c10.png",
+  "cutouts/c11.png",
+  "cutouts/c12.png"
+  // Add more here 💖
+];
+
+
+const cutoutImg = document.getElementById("cutoutImg");
+
+// timings
+const SHOW_MS = 2800;   // how long each cutout stays (matches CSS default)
+const GAP_MS  = 450;    // small pause between cutouts
+const START_DELAY_MS = 900; // initial delay after start
+
+let cutoutIndex = 0;
+let sideLeft = true;
+let loopTimer = null;
+let startedLoop = false;
+
+// choose a "safe" vertical position so it appears in empty side space
+function pickTopPercent(){
+  // avoids header area and footer area; feels natural
+  const options = [18, 24, 30, 36, 42, 50, 58, 64];
+  return options[Math.floor(Math.random() * options.length)];
+}
+
+function showCutoutOnce(){
+  if (!CUTOUTS.length) return;
+
+  // set src
+  cutoutImg.src = CUTOUTS[cutoutIndex];
+
+  // set side class
+  cutoutImg.classList.remove("left", "right", "show");
+  cutoutImg.classList.add(sideLeft ? "left" : "right");
+
+  // set random top each time
+  cutoutImg.style.setProperty("--top", pickTopPercent() + "%");
+
+  // set duration var (optional)
+  cutoutImg.style.setProperty("--dur", (SHOW_MS/1000) + "s");
+
+  // restart animation reliably
+  void cutoutImg.offsetWidth;
+  cutoutImg.classList.add("show");
+
+  // update for next
+  cutoutIndex = (cutoutIndex + 1) % CUTOUTS.length;
+  sideLeft = !sideLeft;
+
+  // schedule next
+  loopTimer = setTimeout(showCutoutOnce, SHOW_MS + GAP_MS);
+}
+
+function startCutoutLoop(){
+  if (startedLoop) return;
+  startedLoop = true;
+  loopTimer = setTimeout(showCutoutOnce, START_DELAY_MS);
+}
+
+function stopCutoutLoop(){
+  startedLoop = false;
+  clearTimeout(loopTimer);
+  loopTimer = null;
+  cutoutImg.classList.remove("show");
+  cutoutImg.style.opacity = 0;
+}
+
+// Start loop when user starts flowers OR after small scroll (your choice)
+document.getElementById("startFxBtn")?.addEventListener("click", startCutoutLoop);
+
+window.addEventListener("scroll", () => {
+  if (startedLoop) return;
+  if (window.scrollY > 120) startCutoutLoop();
+}, { passive:true });
+
+// Optional: pause loop when lightbox is open (so it doesn't distract)
+const lb = document.getElementById("lightbox");
+if (lb){
+  const obs = new MutationObserver(() => {
+    if (lb.classList.contains("open")) stopCutoutLoop();
+    else startCutoutLoop();
+  });
+  obs.observe(lb, { attributes:true, attributeFilter:["class"] });
+}
+
+// =========================================================
+// Love Messages (romantic chat)
+// =========================================================
+const MESSAGES = [
+  // Example messages — replace with yours 💖
+  { who: "him", text: "সায়ন্তী চৌধুরী কুয়াশা সন্দেশ ইরা❤️❤️❤️", time: "🌙" },
+  { who: "him", text: "আইইই লাভভভ ইউ মোস্ট🥰❤️", time: "🌙 " },
+  { who: "me", text: "I love you most babyyyyyyyyyy 🤍", time: "🌙 " },
+  { who: "him", text: "আমার লক্ষী বলো রাধা বলো দুর্গা বলো যাই বলো সেটা পেয়ে গেসি আমি🥰🥰", time: "🌙" },
+  { who: "me",  text: "jaa shor kothai bolbo nh 😤", time: "😅" },
+  { who: "him", text: "আই এম নট মাইসেল্ফ এনিমোর😭😢 আই হেভ লস্ট মাইসেল্ফ ইন ইউ মাই বুবু🤍🤍🤍🥹🥹🥹❤️", time: "🌙" },
+  { who: "him", text: "জানো আজকে কিসে", time: "💗" },
+  { who: "me",  text: "I’m so lucky to have you, Roshogollah 🥺", time: "💞" },
+  { who: "him", text: "গো এহেইড বেবি🥰🥰যখন ই আটকাবে পিছন ফিরলে আমাকে পাবে🥰🥰", time: "✨" },
+  { who: "him", text: "তোমার সাথে দেখা হওয়ার পর আমার ইচ্ছা একটাই।।।।।আমার বাকি জীবন টা তোমাকে সাথে নিয়ে কাটাব আর এটার জন্য যা যা করা লাগে  আমি করতে রাজি।।।।।আমি কোনো ভাবে তোমাকে হারাতে রাজি না।।।তোমার সাথে থাকার প্রচন্ড ইচ্ছা টাই আমাকে অনেক মোটিভেট করে।।।।আর আমার দেখার ইচ্ছা যদি বলো আমি তোমাকে আমার সাথে হ্যাপি দেখতে চাই।।আমার বর্তমান দুনিয়া টা তোমাকে ঘিরে শুধু।।।যাই করব তোমার জন্য🥰", time: "✨" },
+];
+
+const chat = document.getElementById("chat");
+const revealOne = document.getElementById("revealOne");
+const revealAll = document.getElementById("revealAll");
+const hideAll = document.getElementById("hideAll");
+
+let rendered = false;
+let shownCount = 0;
+
+function renderChat(){
+  if (rendered) return;
+  chat.innerHTML = `
+    <div class="tag">💌 Favorite texts from <b>Lokkhishona</b> to <b>Sondeshh</b></div>
+  ` + MESSAGES.map((m, i) => `
+    <div class="bubble ${m.who}" data-i="${i}">
+      ${m.text}
+      <div class="meta">
+        <span>${m.who === "him" ? "Roshogollah" : "Sondeshh"}</span>
+        <span>${m.time || ""}</span>
+      </div>
+    </div>
+  `).join("");
+  rendered = true;
+}
+
+function showNextMessage(){
+  renderChat();
+  const el = chat.querySelector(`.bubble[data-i="${shownCount}"]`);
+  if (!el) return;
+  el.classList.add("show");
+  shownCount++;
+
+  // tiny sparkle
+  if (typeof burst === "function") burst(8);
+}
+
+function showAllMessages(){
+  renderChat();
+  chat.querySelectorAll(".bubble").forEach((b, i) => {
+    setTimeout(()=> b.classList.add("show"), 120 + i*90);
+  });
+  shownCount = MESSAGES.length;
+  if (typeof burst === "function") burst(16);
+}
+
+function hideMessages(){
+  renderChat();
+  chat.querySelectorAll(".bubble").forEach(b => b.classList.remove("show"));
+  shownCount = 0;
+}
+
+revealOne?.addEventListener("click", showNextMessage);
+revealAll?.addEventListener("click", showAllMessages);
+hideAll?.addEventListener("click", hideMessages);
+
+// Optional: auto-render + show first message when section enters view
+const msgSection = document.getElementById("messages");
+if (msgSection){
+  const msgIO = new IntersectionObserver((entries)=>{
+    const v = entries.find(e=>e.isIntersecting);
+    if (!v) return;
+    renderChat();
+    // show first one softly
+    if (shownCount === 0) setTimeout(showNextMessage, 400);
+    msgIO.disconnect();
+  }, { threshold: 0.35 });
+  msgIO.observe(msgSection);
+}
+// Hidden heart surprise
+const hiddenHeart = document.getElementById("hiddenHeart");
+
+hiddenHeart?.addEventListener("click", () => {
+  modalTitle.textContent = "You found it 🤍";
+  modalP1.innerHTML = `
+    You found the hidden heart.  
+    That means you pay attention.
+  `;
+  modalP2.innerHTML = `
+    And that’s exactly why I love you, Lokkhishona.
+  `;
+  modal.classList.add("open");
+});
+
+
+    // =========================================================
+    // 10) Crossfade + autoplay rules note
+    // =========================================================
+    // Music only starts after user clicks Play (browser rule).
+    // Once started, it will crossfade automatically with scrolling.
+  </script>
+</body>
+</html>
